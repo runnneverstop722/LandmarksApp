@@ -12,6 +12,11 @@ final class ModelData: ObservableObject {
     @Published var landmarks: [Landmark] = load("landmarkData.json")
     var hikes: [Hike] = load("hikeData.json")
     
+    // Add a new computed features array, which contains only the landmarks that have isFeatured set to true
+    var features: [Landmark] {
+        landmarks.filter { $0.isFeatured }
+    }
+    
     var categories: [String: [Landmark]] {
         Dictionary(
             grouping: landmarks,
