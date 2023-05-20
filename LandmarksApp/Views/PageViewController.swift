@@ -11,7 +11,7 @@ import UIKit
 // The page view controller stores an array of Page instances, which must be a type of View. These are the pages you use to scroll between landmarks.
 struct PageViewController<Page: View>: UIViewControllerRepresentable {
     var pages: [Page]
-    
+    @Binding var currentPage: Int
     // Make the coordinator
     // SwiftUI calls this makeCoordinator() method before makeUIViewController(context:), so that you have access to the coordinator object when configuring your view controller.
     //Tip: You can use this coordinator to implement common Cocoa patterns, such as delegates, data sources, and responding to user events via target-action.
@@ -24,6 +24,7 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
             transitionStyle: .scroll,
             navigationOrientation: .horizontal)
         pageViewController.dataSource = context.coordinator // Add the coordinator as the data source of the UIPageViewController.
+        pageViewController.delegate = context.coordinator // With the binding connected in both directions, the text view updates to show the correct page number after each swipe.
         
         return pageViewController
     }
@@ -32,10 +33,11 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
     
     func updateUIViewController(_ pageViewController: UIPageViewController, context: Context) {
         pageViewController.setViewControllers(
-            [context.coordinator.controllers[0]], direction: .forward, animated: true) // Initialize an array of controllers in the coordinator using the pages array of views. The coordinator is a good place to store these controllers, because the system initializes them only once, and before you need them to update the view controller.
+            [context.coordinator.controllers[currentPage]], direction: .forward, animated: true) // Initialize an array of controllers in the coordinator using the pages array of views. The coordinator is a good place to store these controllers, because the system initializes them only once, and before you need them to update the view controller.
     }
     // Add UIPageViewControllerDataSource conformance to the Coordinator type, and implement the two required methods.
-    class Coordinator: NSObject, UIPageViewControllerDataSource {
+    // add the pageViewController, Because SwiftUI calls this method whenever a page switching animation completes, you can find the index of the current view controller and update the binding.
+    class Coordinator: NSObject, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
         var parent: PageViewController
         var controllers = [UIViewController]() // Initialize an array of controllers in the coordinator using the pages array of views. The coordinator is a good place to store these controllers, because the system initializes them only once, and before you need them to update the view controller.
         
@@ -63,6 +65,14 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
                 return controllers.first
             }
             return controllers[index + 1]
+        }
+        
+        func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+            if completed,
+               let visibleViewController = pageViewController.viewControllers?.first,
+               let index = controllers.firstIndex(of: visibleViewController) {
+                parent.currentPage = index
+            }
         }
     }
 }
