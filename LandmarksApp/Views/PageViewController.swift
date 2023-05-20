@@ -47,7 +47,9 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
         }
         
         // These two methods establish the relationships between view controllers, so that you can swipe back and forth between them.
-        func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        func pageViewController(
+            _ pageViewController: UIPageViewController,
+            viewControllerBefore viewController: UIViewController) -> UIViewController? {
             guard let index = controllers.firstIndex(of: viewController) else {
                 return nil
             }
@@ -57,7 +59,9 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
             return controllers[index - 1]
         }
         
-        func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        func pageViewController(
+            _ pageViewController: UIPageViewController,
+            viewControllerAfter viewController: UIViewController) -> UIViewController? {
             guard let index = controllers.firstIndex(of: viewController) else {
                 return nil
             }

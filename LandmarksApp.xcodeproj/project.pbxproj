@@ -42,6 +42,7 @@
 		0580A3B22A188460002C30FE /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580A3B12A188460002C30FE /* PageViewController.swift */; };
 		0580A3B42A18887F002C30FE /* FeatureCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580A3B32A18887F002C30FE /* FeatureCard.swift */; };
 		0580A3B62A188B1F002C30FE /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580A3B52A188B1F002C30FE /* PageView.swift */; };
+		0580A3B82A18B619002C30FE /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580A3B72A18B619002C30FE /* PageControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		0580A3B12A188460002C30FE /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		0580A3B32A18887F002C30FE /* FeatureCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCard.swift; sourceTree = "<group>"; };
 		0580A3B52A188B1F002C30FE /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		0580A3B72A18B619002C30FE /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 				0580A3972A173C36002C30FE /* Hikes */,
 				0503D6152A15C1A100BE1227 /* Helpers */,
 				0580A3B12A188460002C30FE /* PageViewController.swift */,
+				0580A3B72A18B619002C30FE /* PageControl.swift */,
 				0580A3B32A18887F002C30FE /* FeatureCard.swift */,
 				0580A3B52A188B1F002C30FE /* PageView.swift */,
 			);
@@ -306,6 +309,7 @@
 				0503D6032A146F5000BE1227 /* MapView.swift in Sources */,
 				0580A39C2A173C36002C30FE /* GraphCapsule.swift in Sources */,
 				0503D5F32A146B2B00BE1227 /* LandmarksApp.swift in Sources */,
+				0580A3B82A18B619002C30FE /* PageControl.swift in Sources */,
 				0503D6142A15C0CD00BE1227 /* FavoriteButton.swift in Sources */,
 				0580A3A52A17BC94002C30FE /* CategoryItem.swift in Sources */,
 				0580A39E2A173C36002C30FE /* HikeDetail.swift in Sources */,

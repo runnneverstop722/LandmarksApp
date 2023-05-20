@@ -12,9 +12,11 @@ struct PageView<Page: View>: View {
     @State private var currentPage = 0 // Declare the @State variable in PageView, and pass a binding to the property when creating the child PageViewController. <Important> Remember to use the $ syntax to create a binding to a value that is stored as state.
     
     var body: some View {
-        VStack {
+        ZStack(alignment: .bottomTrailing) {
             PageViewController(pages: pages, currentPage: $currentPage)
-            Text("Current Page: \(currentPage)")
+            PageControl(numberOfPages: pages.count, currentPage: $currentPage)
+                .frame(width: CGFloat(pages.count * 18))
+                .padding(.trailing)
         }
     }
 }
